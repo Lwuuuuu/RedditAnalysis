@@ -20,7 +20,7 @@ def table_scanner(table_name):
     conn = happybase.Connection('localhost', 9090)
     table = conn.table(table_name)
     total_upvotes = []
-    for key, data in tqdm(table.scan()):
+    for _, data in tqdm(table.scan()):
         subreddit = str(data[b'subreddit:subreddit'])[2:-1]
         timestamp = float(str(data[b'time:time'])[2:-1])
         upvotes = int(str(data[b'stats:upvotes'])[2:-1])
